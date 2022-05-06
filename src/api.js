@@ -6,10 +6,11 @@ async function checkVersionWithAppUpgrade(appInfo, xApiKey) {
     const { appName, appVersion, platform, environment } = appInfo;
 
     const response = await axios.get(
-      `${appUpgradeBaseUrl}/api/v1/versions/check?app_name=${appName}&app_version=${appVersion}&platform=${platform}&environment=${environment}`,
+      `${appUpgradeBaseUrl}/api/v1/versions/check?app_name=${appName}&app_version=${appVersion}&platform=${platform}&environment=${environment}&meta=`,
       {
         headers: {
           "x-api-key": xApiKey,
+          "sdk": "react-native" //Telemetry purposes
         },
       }
     );
@@ -28,4 +29,4 @@ async function checkVersionWithAppUpgrade(appInfo, xApiKey) {
   }
 }
 
-module.exports.checkVersionWithAppUpgrade = checkVersionWithAppUpgrade;
+export { checkVersionWithAppUpgrade };

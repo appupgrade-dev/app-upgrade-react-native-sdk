@@ -72,4 +72,4 @@ function redirectToStore(appId) {
   Linking.openURL(`market://details?id=${appId}`);
 }
 
-module.exports.versionCheck = versionCheck;
+export { versionCheck };

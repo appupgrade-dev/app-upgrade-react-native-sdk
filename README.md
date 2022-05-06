@@ -1,6 +1,6 @@
 # App Upgrade: React-Native SDK
 
-React-Native SDK for [App Upgrade](https://appupgrade.dev)
+React-Native/Expo SDK for [App Upgrade](https://appupgrade.dev)
 
 App Upgrade is a service let your users know when to upgrade your apps or force them to upgrade the app.
 
@@ -20,6 +20,8 @@ Install via npm
 npm i app-upgrade-react-native-sdk --save
 ```
 
+Or if using Expo than you can use `expo install app-upgrade-react-native-sdk` as well.
+
 ## How to use it.
 1. Register on App Upgrade and follow the instructions to create project and get the x-api-key.
 
@@ -30,27 +32,26 @@ import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
 .....
 
 const App: () => Node = () => {
-  useEffect(() => {
-    const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
-    const appInfo = {
-      appId: 'com.example.app', // Your app id in playstore or app store.
-      appName: 'Wallpaper app', // Your app name
-      appVersion: '1.0.0', // Your app version
-      platform: 'android', // App Platform, android or ios
-      environment: 'production', // App Environment, production, development
-    };
 
-    // Alert config is optional
-    const alertConfig = {
-      title: 'Please Update',
-      updateButtonTitle: 'Update Now',
-      laterButtonTitle: 'Later',
-      onDismissCallback: () => { console.log('Dismiss') },
-      onLaterCallback: () => { console.log('Later') }
-    };
+  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
+  const appInfo = {
+    appId: 'com.example.app', // Your app id in playstore or app store.
+    appName: 'Wallpaper app', // Your app name
+    appVersion: '1.0.0', // Your app version
+    platform: 'android', // App Platform, android or ios
+    environment: 'production', // App Environment, production, development
+  };
 
-    appUpgradeVersionCheck(appInfo, xApiKey, alertConfig);
-  }, []);
+  // Alert config is optional
+  const alertConfig = {
+    title: 'Please Update',
+    updateButtonTitle: 'Update Now',
+    laterButtonTitle: 'Later',
+    onDismissCallback: () => { console.log('Dismiss') },
+    onLaterCallback: () => { console.log('Later') }
+  };
+
+  appUpgradeVersionCheck(appInfo, xApiKey, alertConfig);
 
   return (
       <SafeAreaView style={backgroundStyle}>
@@ -58,6 +59,43 @@ const App: () => Node = () => {
       </SafeAreaView>
   );
 };
+
+```
+
+Expo Example:
+```
+import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
+
+.....
+
+export default function App() {
+  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
+  const appInfo = {
+    appId: 'com.example.app', // Your app id in playstore or app store.
+    appName: 'Wallpaper app', // Your app name
+    appVersion: '1.0.0', // Your app version
+    platform: 'android', // App Platform, android or ios
+    environment: 'production', // App Environment, production, development
+  };
+
+  // Alert config is optional
+  const alertConfig = {
+    title: 'Please Update',
+    updateButtonTitle: 'Update Now',
+    laterButtonTitle: 'Later',
+    onDismissCallback: () => { console.log('Dismiss') },
+    onLaterCallback: () => { console.log('Later') }
+  };
+
+  appUpgradeVersionCheck(appInfo, xApiKey, alertConfig);
+
+  return (
+    <View style={styles.container}>
+      <Text>Open up App.js to start working on your app!</Text>
+      <StatusBar style="auto" />
+    </View>
+  );
+}
 
 ```
 

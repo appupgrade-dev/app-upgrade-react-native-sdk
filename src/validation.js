@@ -1,4 +1,4 @@
-export function validate(appInfo, xApiKey) {
+function validate(appInfo, xApiKey) {
   if (!xApiKey || xApiKey === undefined || xApiKey === "") {
     console.error("App Upgrade Validation Error: xApiKey is required.");
     return false;
@@ -46,3 +46,5 @@ export function validate(appInfo, xApiKey) {
     return true;
   }
 }
+
+export { validate };
