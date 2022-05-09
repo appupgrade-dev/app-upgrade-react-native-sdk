@@ -99,15 +99,16 @@ export default function App() {
 
 ```
 
-## Force upgrade screenshot Example
-Only update button is enable. User cannot skip it.
+## Example Screenshot
+### Android
+For force upgrade only Update button is enable and user cannot skip it.
+For recommended upgrade Update and Later button is enable. User can skip it.
 
-![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-react-native-sdk/main/screenshots/forceupgrade.jpeg)
+![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-react-native-sdk/main/screenshots/forceupgrade_android.png)
 
-## Update required screenshot Example
-Update and Later button is enable. User can skip it.
+### iOS
 
-![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-react-native-sdk/main/screenshots/upgrade.jpeg)
+![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-react-native-sdk/main/screenshots/forceupgrade_ios.jpg)
 
 ## App Upgrade Docs
 For more information visit [App Upgrade](https://appupgrade.dev)
