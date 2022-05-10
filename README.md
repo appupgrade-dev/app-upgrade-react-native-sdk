@@ -35,7 +35,7 @@ const App: () => Node = () => {
 
   const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
   const appInfo = {
-    appId: 'com.example.app', // Your app id in playstore or app store.
+    appId: 'com.android.com' or 'id1549468967', // Your app url in play store or app store
     appName: 'Wallpaper app', // Your app name
     appVersion: '1.0.0', // Your app version
     platform: 'android', // App Platform, android or ios
@@ -61,6 +61,14 @@ const App: () => Node = () => {
 };
 
 ```
+### Note:
+2. For opening the app store or play store the app should be live.
+3. It might not be able to open the app store or play store in simulator. You can try it in physical device.
+4. If you are using the same code base for both android and ios than you can detect the platform and provide the appId.
+
+```
+const appId = Platform.OS === 'android' ? 'com.android.chrome' : 'id310633997'
+```
 
 Expo Example:
 ```
@@ -71,7 +79,7 @@ import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
 export default function App() {
   const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
   const appInfo = {
-    appId: 'com.example.app', // Your app id in playstore or app store.
+    appId: 'com.android.com' or 'id1549468967', // Your app url in play store or app store
     appName: 'Wallpaper app', // Your app name
     appVersion: '1.0.0', // Your app version
     platform: 'android', // App Platform, android or ios
@@ -109,6 +117,15 @@ For recommended upgrade Update and Later button is enable. User can skip it.
 ### iOS
 
 ![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-react-native-sdk/main/screenshots/forceupgrade_ios.jpg)
+
+
+### Callbacks Documentations
+SDK provides you two callbacks.
+1. onDismissCallback
+    onDismissCallback callback is called when the dismisses the popup, by clicking elsewhere on the screen. In the non-force upgrade, SDK will show a popup with the Later button and the Update Now button. If the user just clicks outside elsewhere the popup it will dismiss and SDK will call onDismissCallback.
+
+2. onLaterCallback
+    If the user clicks on the Later button the SDK will call the onLaterCallback. You can use these for tracking purposes or for something else. onLaterCallback can be used to set a timer and remind the user later that can be done from the app.
 
 ## App Upgrade Docs
 For more information visit [App Upgrade](https://appupgrade.dev)

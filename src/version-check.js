@@ -1,6 +1,6 @@
 import { validate } from "./validation";
 import { checkVersionWithAppUpgrade } from "./api";
-import { Alert, Linking } from "react-native";
+import { Platform, Alert, Linking } from "react-native";
 
 async function versionCheck(appInfo, xApiKey, alertInfo) {
   const isValid = validate(appInfo, xApiKey);
@@ -69,7 +69,11 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
 }
 
 function redirectToStore(appId) {
-  Linking.openURL(`market://details?id=${appId}`);
+  if (Platform.OS === 'android') {
+    Linking.openURL(`https://play.google.com/store/apps/details?id=${appId}`);
+  } else {
+    Linking.openURL(`https://apps.apple.com/app/id/${appId}`);
+  }
 }
 
 export { versionCheck };

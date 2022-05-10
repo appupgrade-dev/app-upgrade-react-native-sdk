@@ -12,6 +12,9 @@ async function checkVersionWithAppUpgrade(appInfo, xApiKey) {
           "x-api-key": xApiKey,
           "sdk": "react-native" //Telemetry purposes
         },
+        validateStatus: function (status) {
+          return status >= 200 && status < 500; // default
+        },
       }
     );
 
@@ -22,7 +25,7 @@ async function checkVersionWithAppUpgrade(appInfo, xApiKey) {
       );
       return response.data;
     } else {
-      console.info("App Upgrade:", response.data.message);
+      console.error("App Upgrade:", response.data.message);
     }
   } catch (e) {
     console.error("App Upgrade Error:", e.message);
