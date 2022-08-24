@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.6] - 2022-08-24
+
+* Fix force upgrade alert popup disappering if returned from store.
+
 ## [1.0.5] - 2022-05-10
 
 * Use appId instead of appStore to redirect to respective app stores.

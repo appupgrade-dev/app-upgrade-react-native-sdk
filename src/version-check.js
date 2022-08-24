@@ -36,7 +36,10 @@ function showForceUpgradeAlert(appInfo, alertInfo, msg) {
     [
       {
         text: alertInfo.updateButtonTitle,
-        onPress: () => redirectToStore(appInfo.appId),
+        onPress: () => {
+          showForceUpgradeAlert(appInfo, alertInfo, msg)
+          redirectToStore(appInfo.appId)
+        },
       },
     ],
     {
