@@ -112,11 +112,11 @@ export default function App() {
 For force upgrade only Update button is enable and user cannot skip it.
 For recommended upgrade Update and Later button is enable. User can skip it.
 
-![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-react-native-sdk/main/screenshots/forceupgrade_android.png)
+![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-assets/main/images/forceupgrade_android.png)
 
 ### iOS
 
-![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-react-native-sdk/main/screenshots/forceupgrade_ios.jpg)
+![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-assets/main/images/forceupgrade_ios.jpg)
 
 
 ### Callbacks Documentations
@@ -141,5 +141,10 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE OF CONDUCT](CODE_OF_CONDUCT
 ### License
 
 The MIT License (MIT). Please see [License File](LICENSE) for more information.
+
+## Need help?
+
+If you're looking for help, try our [Documentation](https://appupgrade.dev/docs/) or our [FAQ](https://appupgrade.dev/docs/app-upgrade-faq).
+If you need support please write to us at appupgrade.dev@gmail.com
 
 ### Happy Coding!!!

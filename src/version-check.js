@@ -8,7 +8,7 @@ async function versionCheck(appInfo, xApiKey, alertInfo) {
   if (isValid) {
     const version = await checkVersionWithAppUpgrade(appInfo, xApiKey);
     if (!version) {
-      console.error("App Upgrade Error: Version is null");
+      console.error("App Upgrade Error: Version is null.");
     } else if (version && version.found === true) {
       if (version.forceUpgrade === true) {
         console.info("App Upgrade: Version force upgrade is required.");

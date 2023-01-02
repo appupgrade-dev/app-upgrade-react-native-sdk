@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.7] - 2022-08-24
+
+* Minor changes in console error messages.
+
 ## [1.0.6] - 2022-08-24
 
 * Fix force upgrade alert popup disappering if returned from store.

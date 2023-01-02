@@ -12,35 +12,35 @@ function validate(appInfo, xApiKey) {
     appInfo.appId === undefined ||
     appInfo.appId === ""
   ) {
-    console.error("App Upgrade Validation Error: appId is required");
+    console.error("App Upgrade Validation Error: appId is required.");
     return false;
   } else if (
     !appInfo.appName ||
     appInfo.appName === undefined ||
     appInfo.appName === ""
   ) {
-    console.error("App Upgrade Validation Error: appName is required");
+    console.error("App Upgrade Validation Error: appName is required.");
     return false;
   } else if (
     !appInfo.appName ||
     appInfo.appVersion === undefined ||
     appInfo.appVersion === ""
   ) {
-    console.error("App Upgrade Validation Error: appVersion is required");
+    console.error("App Upgrade Validation Error: appVersion is required.");
     return false;
   } else if (
     !appInfo.platform ||
     appInfo.platform === undefined ||
     appInfo.platform === ""
   ) {
-    console.error("App Upgrade Validation Error: platform is required");
+    console.error("App Upgrade Validation Error: platform is required.");
     return false;
   } else if (
     !appInfo.environment ||
     appInfo.environment === undefined ||
     appInfo.environment === ""
   ) {
-    console.error("App Upgrade Validation Error: environment is required");
+    console.error("App Upgrade Validation Error: environment is required.");
     return false;
   } else {
     return true;
