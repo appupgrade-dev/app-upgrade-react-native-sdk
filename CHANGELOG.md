@@ -2,7 +2,7 @@
 
 All notable changes will be documented in this file.
 
-## [1.0.7] - 2022-08-24
+## [1.0.7] - 2023-01-02
 
 * Minor changes in console error messages.
 
