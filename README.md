@@ -62,9 +62,11 @@ const App: () => Node = () => {
 
 ```
 ### Note:
-2. For opening the app store or play store the app should be live.
-3. It might not be able to open the app store or play store in simulator. You can try it in physical device.
-4. If you are using the same code base for both android and ios than you can detect the platform and provide the appId.
+1. For opening the app store or play store the app should be live.
+2. It might not be able to open the app store or play store in simulator. You can try it in physical device.
+3. If you are using the same code base for both android and ios than you can detect the platform and provide the appId.
+4. You can find a sample app from here [app-upgrade-react-native-demo-app](https://github.com/appupgrade-dev/app_upgrade_react_native_demo_app)
+r. Read detailed blog on how to integrate from here [How to upgrade/force upgrade React Native app](https://appupgrade.dev/blog/how-to-force-upgrade-react-native-app)
 
 ```
 const appId = Platform.OS === 'android' ? 'com.android.chrome' : 'id310633997'
