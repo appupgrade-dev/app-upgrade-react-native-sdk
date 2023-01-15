@@ -1,6 +1,6 @@
 {
   "name": "app-upgrade-react-native-sdk",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "app upgrade react-native sdk",
   "main": "index.js",
   "scripts": {

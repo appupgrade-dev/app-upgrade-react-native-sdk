@@ -3,10 +3,10 @@ import axios from "axios";
 async function checkVersionWithAppUpgrade(appInfo, xApiKey) {
   try {
     const appUpgradeBaseUrl = "https://appupgrade.dev";
-    const { appName, appVersion, platform, environment } = appInfo;
+    const { appName, appVersion, platform, environment, appLanguage } = appInfo;
 
     const response = await axios.get(
-      `${appUpgradeBaseUrl}/api/v1/versions/check?app_name=${appName}&app_version=${appVersion}&platform=${platform}&environment=${environment}&app_language=${app_language}`,
+      `${appUpgradeBaseUrl}/api/v1/versions/check?app_name=${appName}&app_version=${appVersion}&platform=${platform}&environment=${environment}&app_language=${appLanguage}`,
       {
         headers: {
           "x-api-key": xApiKey,

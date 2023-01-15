@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.9] - 2023-01-16
+
+* Fix localization backward compatibility.
+
 ## [1.0.8] - 2023-01-16
 
 * Add support for update message localization.
