@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.8] - 2023-01-16
+
+* Add support for update message localization.
+
 ## [1.0.7] - 2023-01-02
 
 * Minor changes in console error messages.
