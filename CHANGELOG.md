@@ -2,6 +2,11 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.10] - 2023-02-03
+
+* Fix url encoding for app name.
+* Added request retry for failed requests.
+
 ## [1.0.9] - 2023-01-16
 
 * Fix localization backward compatibility.
