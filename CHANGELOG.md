@@ -2,7 +2,7 @@
 
 All notable changes will be documented in this file.
 
-## [1.0.11] - 2023-02-03
+## [1.0.11] - 2023-02-27
 
 * Added support for Amazon, Huawei and other marketplaces.
 

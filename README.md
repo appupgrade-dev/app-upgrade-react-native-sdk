@@ -117,7 +117,7 @@ export default function App() {
 ### Example with store other than app store or play store.
 If you want users to redirect to store other than app store or playstore. You can add these additional parameters **preferredAndroidMarket** see the example below.
 ```
-import {appUpgradeVersionCheck, PrefferedAndroidMarket } from 'app-upgrade-react-native-sdk';
+import {appUpgradeVersionCheck, PreferredAndroidMarket } from 'app-upgrade-react-native-sdk';
 
 .....
 
@@ -131,7 +131,7 @@ const App: () => Node = () => {
     platform: 'android', // App Platform, android or ios
     environment: 'production', // App Environment, production, development
     appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-    preferredAndroidMarket: PrefferedAndroidMarket.Amazon // or PrefferedAndroidMarket.Huawei or PrefferedAndroidMarket.Other If not provided default is Google playstore. Optional
+    preferredAndroidMarket: PreferredAndroidMarket.Amazon // or PreferredAndroidMarket.Huawei or PreferredAndroidMarket.Other If not provided default is Google playstore. Optional
   };
 
   appUpgradeVersionCheck(appInfo, xApiKey);
@@ -147,7 +147,7 @@ const App: () => Node = () => {
 
 If you want to redirect user to some other android market place you can use the following example:
 ```
-import {appUpgradeVersionCheck, PrefferedAndroidMarket } from 'app-upgrade-react-native-sdk';
+import {appUpgradeVersionCheck, PreferredAndroidMarket } from 'app-upgrade-react-native-sdk';
 
 .....
 
@@ -161,7 +161,7 @@ const App: () => Node = () => {
     platform: 'android', // App Platform, android or ios
     environment: 'production', // App Environment, production, development
     appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-    preferredAndroidMarket: PrefferedAndroidMarket.Other
+    preferredAndroidMarket: PreferredAndroidMarket.Other
     otherAndroidMarketUrl: 'https://someotherandroidmarket.com/app/id'// Required if preferredAndroidMarket is Other.
   };
 

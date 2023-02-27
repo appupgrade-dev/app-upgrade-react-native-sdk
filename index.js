@@ -1,6 +1,6 @@
 import { versionCheck } from "./src/version-check";
 
-const PreferedAndroidMarket = {
+const PreferredAndroidMarket = {
   Google: 'Google',
   Huawei: 'Huawei',
   Amazon: 'Amazon',
@@ -11,4 +11,4 @@ function appUpgradeVersionCheck(appInfo, xApiKey, alertInfo) {
   versionCheck(appInfo, xApiKey, alertInfo);
 }
 
-export { appUpgradeVersionCheck, PreferedAndroidMarket };
+export { appUpgradeVersionCheck, PreferredAndroidMarket };

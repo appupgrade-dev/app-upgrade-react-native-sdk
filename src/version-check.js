@@ -1,7 +1,7 @@
 import { validate } from "./validation";
 import { checkVersionWithAppUpgrade } from "./api";
 import { Platform, Alert, Linking } from "react-native";
-import { PreferedAndroidMarket } from "app-upgrade-react-native-sdk";
+import { PreferredAndroidMarket } from "app-upgrade-react-native-sdk";
 
 async function versionCheck(appInfo, xApiKey, alertInfo) {
   const isValid = validate(appInfo, xApiKey);
@@ -74,16 +74,16 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
 
 function redirectToStore(appInfo) {
   if (Platform.OS === 'android') {
-    if (appInfo.preferedAndroidMarket === PreferedAndroidMarket.Google) {
+    if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Google) {
       const url = `https://play.google.com/store/apps/details?id=${appInfo.appId}`
       openStore(url);
-    } else if (appInfo.preferedAndroidMarket === PreferedAndroidMarket.Huawei) {
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Huawei) {
       const url = `appmarket://details?id=${appInfo.appId}`;
       openStore(url);
-    } else if (appInfo.preferedAndroidMarket === PreferedAndroidMarket.Amazon) {
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Amazon) {
       const url = `https://www.amazon.com/gp/mas/dl/android?p=${appInfo.appId}`;
       openStore(url);
-    } else if (appInfo.preferedAndroidMarket === PreferedAndroidMarket.Other) {
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Other) {
       Linking.openURL(appInfo.otherAndroidMarketUrl);
     } else {
       Linking.openURL(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);

@@ -1,4 +1,4 @@
-import { PreferedAndroidMarket } from "app-upgrade-react-native-sdk";
+import { PreferredAndroidMarket } from "app-upgrade-react-native-sdk";
 
 function validate(appInfo, xApiKey) {
   if (!xApiKey || xApiKey === undefined || xApiKey === "") {
@@ -45,8 +45,8 @@ function validate(appInfo, xApiKey) {
     console.error("App Upgrade Validation Error: environment is required.");
     return false;
   } else if (
-    appInfo.preferedAndroidMarket &&
-    appInfo.preferedAndroidMarket === PreferedAndroidMarket.Other &&
+    appInfo.preferredAndroidMarket &&
+    appInfo.preferredAndroidMarket === PreferredAndroidMarket.Other &&
     !appInfo.otherAndroidMarketUrl
   ) {
     console.error(
@@ -54,9 +54,9 @@ function validate(appInfo, xApiKey) {
     );
     return false;
   } else if (
-    appInfo.preferedAndroidMarket &&
-    !Object.values(PreferedAndroidMarket).includes(
-      appInfo.preferedAndroidMarket
+    appInfo.preferredAndroidMarket &&
+    !Object.values(PreferredAndroidMarket).includes(
+      appInfo.preferredAndroidMarket
     )
   ) {
     console.error(
