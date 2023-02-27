@@ -1,6 +1,7 @@
 import { validate } from "./validation";
 import { checkVersionWithAppUpgrade } from "./api";
 import { Platform, Alert, Linking } from "react-native";
+import { PreferredAndroidMarket } from "app-upgrade-react-native-sdk";
 
 async function versionCheck(appInfo, xApiKey, alertInfo) {
   const isValid = validate(appInfo, xApiKey);
@@ -38,7 +39,7 @@ function showForceUpgradeAlert(appInfo, alertInfo, msg) {
         text: alertInfo.updateButtonTitle,
         onPress: () => {
           showForceUpgradeAlert(appInfo, alertInfo, msg)
-          redirectToStore(appInfo.appId)
+          redirectToStore(appInfo)
         },
       },
     ],
@@ -60,7 +61,7 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
       },
       {
         text: alertInfo.updateButtonTitle,
-        onPress: () => redirectToStore(appInfo.appId),
+        onPress: () => redirectToStore(appInfo),
       },
     ],
     {
@@ -71,12 +72,31 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
   );
 }
 
-function redirectToStore(appId) {
+function redirectToStore(appInfo) {
   if (Platform.OS === 'android') {
-    Linking.openURL(`https://play.google.com/store/apps/details?id=${appId}`);
+    if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.GOOGLE) {
+      const url = `https://play.google.com/store/apps/details?id=${appInfo.appId}`
+      openStore(url);
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.HUAWEI) {
+      const url = `appmarket://details?id=${appInfo.appId}`;
+      openStore(url);
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.AMAZON) {
+      const url = `https://www.amazon.com/gp/mas/dl/android?p=${appInfo.appId}`;
+      openStore(url);
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.OTHER) {
+      Linking.openURL(appInfo.otherAndroidMarketUrl);
+    } else {
+      Linking.openURL(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);
+    }
   } else {
-    Linking.openURL(`https://apps.apple.com/app/id/${appId}`);
+    Linking.openURL(`https://apps.apple.com/app/id/${appInfo.appId}`);
   }
+}
+
+function openStore(url) {
+  Linking.openURL(url).catch((err) => {
+    console.debug("App Upgrade Error: ", err);
+  })
 }
 
 export { versionCheck };
