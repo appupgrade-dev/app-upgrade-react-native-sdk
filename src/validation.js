@@ -1,3 +1,5 @@
+import { PreferedAndroidMarket } from "app-upgrade-react-native-sdk";
+
 function validate(appInfo, xApiKey) {
   if (!xApiKey || xApiKey === undefined || xApiKey === "") {
     console.error("App Upgrade Validation Error: xApiKey is required.");
@@ -41,6 +43,25 @@ function validate(appInfo, xApiKey) {
     appInfo.environment === ""
   ) {
     console.error("App Upgrade Validation Error: environment is required.");
+    return false;
+  } else if (
+    appInfo.preferedAndroidMarket &&
+    appInfo.preferedAndroidMarket === PreferedAndroidMarket.Other &&
+    !appInfo.otherAndroidMarketUrl
+  ) {
+    console.error(
+      "App Upgrade Validation Error: otherMarketUrl is required when prefferedAndroidMarket is Other."
+    );
+    return false;
+  } else if (
+    appInfo.preferedAndroidMarket &&
+    !Object.values(PreferedAndroidMarket).includes(
+      appInfo.preferedAndroidMarket
+    )
+  ) {
+    console.error(
+      "App Upgrade Validation Error: Unsupported prefferedAndroidMarket value."
+    );
     return false;
   } else {
     return true;

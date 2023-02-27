@@ -14,6 +14,12 @@ This SDK communicate with App Upgrade and check the version with store version i
 - If app needs to be updated but not a force update, it will show a dismissable popup.
 - If no action is required it won't do anything.
 
+App Upgrade is a cross platform solution to getting users to easily update your app.
+##### Stores Supported:
+Apple App Store | Google Play Store | Amazon App Store | Huawei AppGallery | Other Android Markets
+--- | --- | --- | --- | ---
+**✓** | **✓** | **✓** | **✓** |  **✓** If your app market place isn't one of these you can pass your own store URL.
+
 ## Installation
 Install via npm
 ```
@@ -26,6 +32,7 @@ Or if using Expo than you can use `expo install app-upgrade-react-native-sdk` as
 1. Register on App Upgrade and follow the instructions to create project and get the x-api-key.
 
 2. Import the SDK and use it.
+### React Native Example
 ```
 import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
 
@@ -62,18 +69,8 @@ const App: () => Node = () => {
 };
 
 ```
-### Note:
-1. For opening the app store or play store the app should be live.
-2. It might not be able to open the app store or play store in simulator. You can try it in physical device.
-3. If you are using the same code base for both android and ios than you can detect the platform and provide the appId.
-4. You can find a sample app from here [app-upgrade-react-native-demo-app](https://github.com/appupgrade-dev/app_upgrade_react_native_demo_app)
-r. Read detailed blog on how to integrate from here [How to upgrade/force upgrade React Native app](https://appupgrade.dev/blog/how-to-force-upgrade-react-native-app)
 
-```
-const appId = Platform.OS === 'android' ? 'com.android.chrome' : 'id310633997'
-```
-
-Expo Example:
+### Expo Example:
 ```
 import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
 
@@ -108,6 +105,74 @@ export default function App() {
     </View>
   );
 }
+
+```
+### Note:
+1. For opening the app store or play store the app should be live.
+2. It might not be able to open the app store or play store in simulator. You can try it in physical device.
+3. If you are using the same code base for both android and ios than you can detect the platform and provide the appId.
+4. You can find a sample app from here [app-upgrade-react-native-demo-app](https://github.com/appupgrade-dev/app_upgrade_react_native_demo_app)
+5. Read detailed blog on how to integrate from here [How to upgrade/force upgrade React Native app](https://appupgrade.dev/blog/how-to-force-upgrade-react-native-app)
+
+### Example with store other than app store or play store.
+If you want users to redirect to store other than app store or playstore. You can add these additional parameters **preferredAndroidMarket** see the example below.
+```
+import {appUpgradeVersionCheck, PrefferedAndroidMarket } from 'app-upgrade-react-native-sdk';
+
+.....
+
+const App: () => Node = () => {
+
+  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
+  const appInfo = {
+    appId: 'com.android.com' or 'id1549468967', // Your app url in play store or app store
+    appName: 'Wallpaper app', // Your app name
+    appVersion: '1.0.0', // Your app version
+    platform: 'android', // App Platform, android or ios
+    environment: 'production', // App Environment, production, development
+    appLanguage: 'es' //Your app language ex: en, es etc. Optional.
+    preferredAndroidMarket: PrefferedAndroidMarket.Amazon // or PrefferedAndroidMarket.Huawei or PrefferedAndroidMarket.Other If not provided default is Google playstore. Optional
+  };
+
+  appUpgradeVersionCheck(appInfo, xApiKey);
+
+  return (
+      <SafeAreaView style={backgroundStyle}>
+        ...
+      </SafeAreaView>
+  );
+};
+
+```
+
+If you want to redirect user to some other android market place you can use the following example:
+```
+import {appUpgradeVersionCheck, PrefferedAndroidMarket } from 'app-upgrade-react-native-sdk';
+
+.....
+
+const App: () => Node = () => {
+
+  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
+  const appInfo = {
+    appId: 'com.android.com' or 'id1549468967', // Your app url in play store or app store
+    appName: 'Wallpaper app', // Your app name
+    appVersion: '1.0.0', // Your app version
+    platform: 'android', // App Platform, android or ios
+    environment: 'production', // App Environment, production, development
+    appLanguage: 'es' //Your app language ex: en, es etc. Optional.
+    preferredAndroidMarket: PrefferedAndroidMarket.Other
+    otherAndroidMarketUrl: 'https://someotherandroidmarket.com/app/id'// Required if preferredAndroidMarket is Other.
+  };
+
+  appUpgradeVersionCheck(appInfo, xApiKey);
+
+  return (
+      <SafeAreaView style={backgroundStyle}>
+        ...
+      </SafeAreaView>
+  );
+};
 
 ```
 
