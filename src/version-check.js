@@ -74,16 +74,16 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
 
 function redirectToStore(appInfo) {
   if (Platform.OS === 'android') {
-    if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Google) {
+    if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.GOOGLE) {
       const url = `https://play.google.com/store/apps/details?id=${appInfo.appId}`
       openStore(url);
-    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Huawei) {
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.HUAWEI) {
       const url = `appmarket://details?id=${appInfo.appId}`;
       openStore(url);
-    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Amazon) {
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.AMAZON) {
       const url = `https://www.amazon.com/gp/mas/dl/android?p=${appInfo.appId}`;
       openStore(url);
-    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.Other) {
+    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.OTHER) {
       Linking.openURL(appInfo.otherAndroidMarketUrl);
     } else {
       Linking.openURL(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);

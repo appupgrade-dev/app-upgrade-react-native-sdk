@@ -1,10 +1,10 @@
 import { versionCheck } from "./src/version-check";
 
 const PreferredAndroidMarket = {
-  Google: 'Google',
-  Huawei: 'Huawei',
-  Amazon: 'Amazon',
-  Other: 'Other',
+  GOOGLE: 'Google',
+  HUAWEI: 'Huawei',
+  AMAZON: 'Amazon',
+  OTHER: 'Other',
 }
 
 function appUpgradeVersionCheck(appInfo, xApiKey, alertInfo) {

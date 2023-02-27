@@ -46,7 +46,7 @@ function validate(appInfo, xApiKey) {
     return false;
   } else if (
     appInfo.preferredAndroidMarket &&
-    appInfo.preferredAndroidMarket === PreferredAndroidMarket.Other &&
+    appInfo.preferredAndroidMarket === PreferredAndroidMarket.OTHER &&
     !appInfo.otherAndroidMarketUrl
   ) {
     console.error(

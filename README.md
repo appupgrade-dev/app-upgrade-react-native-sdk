@@ -131,7 +131,7 @@ const App: () => Node = () => {
     platform: 'android', // App Platform, android or ios
     environment: 'production', // App Environment, production, development
     appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-    preferredAndroidMarket: PreferredAndroidMarket.Amazon // or PreferredAndroidMarket.Huawei or PreferredAndroidMarket.Other If not provided default is Google playstore. Optional
+    preferredAndroidMarket: PreferredAndroidMarket.AMAZON // or PreferredAndroidMarket.HUAWEI or PreferredAndroidMarket.OTHER If not provided default is Google playstore. Optional
   };
 
   appUpgradeVersionCheck(appInfo, xApiKey);
@@ -161,7 +161,7 @@ const App: () => Node = () => {
     platform: 'android', // App Platform, android or ios
     environment: 'production', // App Environment, production, development
     appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-    preferredAndroidMarket: PreferredAndroidMarket.Other
+    preferredAndroidMarket: PreferredAndroidMarket.OTHER
     otherAndroidMarketUrl: 'https://someotherandroidmarket.com/app/id'// Required if preferredAndroidMarket is Other.
   };
 
