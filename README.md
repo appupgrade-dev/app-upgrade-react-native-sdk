@@ -145,7 +145,14 @@ const App: () => Node = () => {
 
 ```
 
-If you want to redirect user to some other android market place you can use the following example:
+- preferredAndroidMarket: PreferredAndroidMarket.AMAZON // or PreferredAndroidMarket.HUAWEI or PreferredAndroidMarket.OTHER If not provided default is Google playstore. If SDK fails to open preferred market place in case marketplace is not available then default Google playstore will be open.
+
+If you want to redirect user to some other android market place you can add the following fields:
+```
+preferredAndroidMarket: PreferredAndroidMarket.OTHER
+otherAndroidMarketUrl: 'https://someotherandroidmarket.com/app/id'// Required if preferredAndroidMarket is Other.
+```
+
 ```
 import {appUpgradeVersionCheck, PreferredAndroidMarket } from 'app-upgrade-react-native-sdk';
 

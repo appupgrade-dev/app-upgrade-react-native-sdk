@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.12] - 2023-03-01
+
+* Added Google playstore as default fallback marketplace for android.
+
 ## [1.0.11] - 2023-02-27
 
 * Added support for Amazon, Huawei and other marketplaces.

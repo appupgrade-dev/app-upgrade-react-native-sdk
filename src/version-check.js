@@ -74,28 +74,31 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
 
 function redirectToStore(appInfo) {
   if (Platform.OS === 'android') {
+    const defaultGooglePlaystoreUrl = `https://play.google.com/store/apps/details?id=${appInfo.appId}`;
+
     if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.GOOGLE) {
       const url = `https://play.google.com/store/apps/details?id=${appInfo.appId}`
-      openStore(url);
+      openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl);
     } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.HUAWEI) {
       const url = `appmarket://details?id=${appInfo.appId}`;
-      openStore(url);
+      openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl);
     } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.AMAZON) {
       const url = `https://www.amazon.com/gp/mas/dl/android?p=${appInfo.appId}`;
-      openStore(url);
+      openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl);
     } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.OTHER) {
-      Linking.openURL(appInfo.otherAndroidMarketUrl);
+      Linking.openPreferredAndroidMarket(appInfo.otherAndroidMarketUrl);
     } else {
-      Linking.openURL(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);
+      Linking.openPreferredAndroidMarket(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);
     }
   } else {
     Linking.openURL(`https://apps.apple.com/app/id/${appInfo.appId}`);
   }
 }
 
-function openStore(url) {
+function openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl) {
   Linking.openURL(url).catch((err) => {
-    console.debug("App Upgrade Error: ", err);
+    console.debug("App Upgrade Error: Could not open the preferred android market. Defaulting to Google Playstore.", err.message);
+    Linking.openURL(defaultGooglePlaystoreUrl);
   })
 }
 
