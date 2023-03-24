@@ -32,11 +32,11 @@ async function versionCheck(appInfo, xApiKey, alertInfo) {
 
 function showForceUpgradeAlert(appInfo, alertInfo, msg) {
   Alert.alert(
-    alertInfo.title,
+    alertInfo.title ? alertInfo.title : "Please update",
     msg,
     [
       {
-        text: alertInfo.updateButtonTitle,
+        text: alertInfo.updateButtonTitle ? alertInfo.updateButtonTitle : "Update Now",
         onPress: () => {
           showForceUpgradeAlert(appInfo, alertInfo, msg)
           redirectToStore(appInfo)
@@ -51,16 +51,16 @@ function showForceUpgradeAlert(appInfo, alertInfo, msg) {
 
 function showUpgradeAlert(appInfo, alertInfo, msg) {
   Alert.alert(
-    alertInfo.title,
+    alertInfo.title ? alertInfo.title : "Please update",
     msg,
     [
       {
-        text: alertInfo.laterButtonTitle,
+        text: alertInfo.laterButtonTitle ? alertInfo.laterButtonTitle : "Later",
         onPress: () =>
           alertInfo.onLaterCallback ? alertInfo.onLaterCallback() : null,
       },
       {
-        text: alertInfo.updateButtonTitle,
+        text: alertInfo.updateButtonTitle ? alertInfo.updateButtonTitle: "Update Now",
         onPress: () => redirectToStore(appInfo),
       },
     ],
@@ -86,9 +86,9 @@ function redirectToStore(appInfo) {
       const url = `https://www.amazon.com/gp/mas/dl/android?p=${appInfo.appId}`;
       openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl);
     } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.OTHER) {
-      Linking.openPreferredAndroidMarket(appInfo.otherAndroidMarketUrl);
+      openPreferredAndroidMarket(appInfo.otherAndroidMarketUrl);
     } else {
-      Linking.openPreferredAndroidMarket(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);
+      openPreferredAndroidMarket(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);
     }
   } else {
     Linking.openURL(`https://apps.apple.com/app/id/${appInfo.appId}`);
