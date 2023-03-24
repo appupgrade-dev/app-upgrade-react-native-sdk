@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.13] - 2023-03-24
+
+* Fix launch of store.
+
 ## [1.0.12] - 2023-03-01
 
 * Added Google playstore as default fallback marketplace for android.
