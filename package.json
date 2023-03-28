@@ -1,12 +1,12 @@
 {
   "name": "app-upgrade-react-native-sdk",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Official App Upgrade react-native sdk",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "App Upgrade <appupgrade.dev@gmail.com> (https://appupgrade.dev)",
+  "author": "App Upgrade <support@appupgrade.dev> (https://appupgrade.dev)",
   "homepage": "https://github.com/appupgrade-dev/app-upgrade-react-native-sdk",
   "repository": {
     "type": "git",

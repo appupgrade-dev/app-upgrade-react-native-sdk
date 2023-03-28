@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.14] - 2023-03-28
+
+* Update README docs.
+
 ## [1.0.13] - 2023-03-24
 
 * Fix launch of store.
