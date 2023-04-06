@@ -42,7 +42,7 @@ const App: () => Node = () => {
 
   const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
   const appInfo = {
-    appId: 'com.android.com' or 'id1549468967', // Your app id in play store or app store
+    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
     appName: 'Wallpaper app', // Your app name
     appVersion: '1.0.0', // Your app version
     platform: 'android', // App Platform, android or ios
@@ -79,7 +79,7 @@ import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
 export default function App() {
   const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
   const appInfo = {
-    appId: 'com.android.com' or 'id1549468967', // Your app id in play store or app store
+    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
     appName: 'Wallpaper app', // Your app name
     appVersion: '1.0.0', // Your app version
     platform: 'android', // App Platform, android or ios
@@ -125,7 +125,7 @@ const App: () => Node = () => {
 
   const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
   const appInfo = {
-    appId: 'com.android.com' or 'id1549468967', // Your app id in play store or app store
+    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
     appName: 'Wallpaper app', // Your app name
     appVersion: '1.0.0', // Your app version
     platform: 'android', // App Platform, android or ios
@@ -162,7 +162,7 @@ const App: () => Node = () => {
 
   const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
   const appInfo = {
-    appId: 'com.android.com' or 'id1549468967', // Your app id in play store or app store
+    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
     appName: 'Wallpaper app', // Your app name
     appVersion: '1.0.0', // Your app version
     platform: 'android', // App Platform, android or ios
