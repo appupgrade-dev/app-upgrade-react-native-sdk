@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.15] - 2023-04-06
+
+* Update README docs examples
+
 ## [1.0.14] - 2023-03-28
 
 * Update README docs.
