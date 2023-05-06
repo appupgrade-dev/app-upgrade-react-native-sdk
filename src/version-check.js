@@ -36,10 +36,12 @@ function showForceUpgradeAlert(appInfo, alertInfo, msg) {
     msg,
     [
       {
-        text: alertInfo.updateButtonTitle ? alertInfo.updateButtonTitle : "Update Now",
+        text: alertInfo.updateButtonTitle
+          ? alertInfo.updateButtonTitle
+          : "Update Now",
         onPress: () => {
-          showForceUpgradeAlert(appInfo, alertInfo, msg)
-          redirectToStore(appInfo)
+          showForceUpgradeAlert(appInfo, alertInfo, msg);
+          redirectToStore(appInfo);
         },
       },
     ],
@@ -60,8 +62,13 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
           alertInfo.onLaterCallback ? alertInfo.onLaterCallback() : null,
       },
       {
-        text: alertInfo.updateButtonTitle ? alertInfo.updateButtonTitle: "Update Now",
-        onPress: () => redirectToStore(appInfo),
+        text: alertInfo.updateButtonTitle
+          ? alertInfo.updateButtonTitle
+          : "Update Now",
+        onPress: () => {
+          alertInfo.onUpdateCallback ? alertInfo.onUpdateCallback() : null;
+          redirectToStore(appInfo);
+        },
       },
     ],
     {
@@ -73,22 +80,30 @@ function showUpgradeAlert(appInfo, alertInfo, msg) {
 }
 
 function redirectToStore(appInfo) {
-  if (Platform.OS === 'android') {
+  if (Platform.OS === "android") {
     const defaultGooglePlaystoreUrl = `https://play.google.com/store/apps/details?id=${appInfo.appId}`;
 
     if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.GOOGLE) {
-      const url = `https://play.google.com/store/apps/details?id=${appInfo.appId}`
+      const url = `https://play.google.com/store/apps/details?id=${appInfo.appId}`;
       openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl);
-    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.HUAWEI) {
+    } else if (
+      appInfo.preferredAndroidMarket === PreferredAndroidMarket.HUAWEI
+    ) {
       const url = `appmarket://details?id=${appInfo.appId}`;
       openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl);
-    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.AMAZON) {
+    } else if (
+      appInfo.preferredAndroidMarket === PreferredAndroidMarket.AMAZON
+    ) {
       const url = `https://www.amazon.com/gp/mas/dl/android?p=${appInfo.appId}`;
       openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl);
-    } else if (appInfo.preferredAndroidMarket === PreferredAndroidMarket.OTHER) {
+    } else if (
+      appInfo.preferredAndroidMarket === PreferredAndroidMarket.OTHER
+    ) {
       openPreferredAndroidMarket(appInfo.otherAndroidMarketUrl);
     } else {
-      openPreferredAndroidMarket(`https://play.google.com/store/apps/details?id=${appInfo.appId}`);
+      openPreferredAndroidMarket(
+        `https://play.google.com/store/apps/details?id=${appInfo.appId}`
+      );
     }
   } else {
     Linking.openURL(`https://apps.apple.com/app/id/${appInfo.appId}`);
@@ -97,9 +112,12 @@ function redirectToStore(appInfo) {
 
 function openPreferredAndroidMarket(url, defaultGooglePlaystoreUrl) {
   Linking.openURL(url).catch((err) => {
-    console.debug("App Upgrade Error: Could not open the preferred android market. Defaulting to Google Playstore.", err.message);
+    console.debug(
+      "App Upgrade Error: Could not open the preferred android market. Defaulting to Google Playstore.",
+      err.message
+    );
     Linking.openURL(defaultGooglePlaystoreUrl);
-  })
+  });
 }
 
 export { versionCheck };

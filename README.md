@@ -57,6 +57,7 @@ const App: () => Node = () => {
     laterButtonTitle: 'Later',
     onDismissCallback: () => { console.log('Dismiss') },
     onLaterCallback: () => { console.log('Later') }
+    onUpdateCallback: () => { console.log('Update') }
   };
 
   appUpgradeVersionCheck(appInfo, xApiKey, alertConfig);
@@ -94,6 +95,7 @@ export default function App() {
     laterButtonTitle: 'Later',
     onDismissCallback: () => { console.log('Dismiss') },
     onLaterCallback: () => { console.log('Later') }
+    onUpdateCallback: () => { console.log('Update') }
   };
 
   appUpgradeVersionCheck(appInfo, xApiKey, alertConfig);
@@ -202,6 +204,9 @@ SDK provides you two callbacks.
 
 2. onLaterCallback
     If the user clicks on the Later button the SDK will call the onLaterCallback. You can use these for tracking purposes or for something else. onLaterCallback can be used to set a timer and remind the user later that can be done from the app.
+
+3. onUpdateCallback
+    If the user clicks on the Update button the SDK will call the onUpdateCallback. You can use these for tracking purposes or for something else.
 
 ## App Upgrade Docs
 For more information visit [App Upgrade](https://appupgrade.dev)
