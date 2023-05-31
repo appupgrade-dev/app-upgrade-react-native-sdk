@@ -3,11 +3,11 @@ import { checkVersionWithAppUpgrade } from "./api";
 import { Platform, Alert, Linking } from "react-native";
 import { PreferredAndroidMarket } from "app-upgrade-react-native-sdk";
 
-async function versionCheck(appInfo, xApiKey, alertInfo) {
+async function versionCheck(appInfo, xApiKey, alertInfo, baseUrl) {
   const isValid = validate(appInfo, xApiKey);
 
   if (isValid) {
-    const version = await checkVersionWithAppUpgrade(appInfo, xApiKey);
+    const version = await checkVersionWithAppUpgrade(appInfo, xApiKey, baseUrl);
     if (!version) {
       console.error("App Upgrade Error: Version is null.");
     } else if (version && version.found === true) {
