@@ -1,9 +1,8 @@
 import axios from "axios";
 import axiosRetry from 'axios-retry';
 
-async function checkVersionWithAppUpgrade(appInfo, xApiKey) {
+async function checkVersionWithAppUpgrade(appInfo, xApiKey, appUpgradeBaseUrl) {
   try {
-    const appUpgradeBaseUrl = "https://appupgrade.dev";
     const { appName, appVersion, platform, environment, appLanguage } = appInfo;
 
     axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay, retryCondition: () => true });
