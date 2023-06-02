@@ -8,7 +8,7 @@ async function checkVersionWithAppUpgrade(appInfo, xApiKey, appUpgradeBaseUrl) {
     axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay, retryCondition: () => true });
 
     const response = await axios.get(
-      `${appUpgradeBaseUrl}/api/v1/versions/check`,
+      `${appUpgradeBaseUrl}`,
       {
         headers: {
           "x-api-key": xApiKey,
