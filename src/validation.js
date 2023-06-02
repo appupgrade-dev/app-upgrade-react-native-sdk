@@ -1,4 +1,4 @@
-import { PreferredAndroidMarket } from "app-upgrade-react-native-sdk";
+import { PreferredAndroidMarket } from "../index";
 
 function validate(appInfo, xApiKey) {
   if (!xApiKey || xApiKey === undefined || xApiKey === "") {
