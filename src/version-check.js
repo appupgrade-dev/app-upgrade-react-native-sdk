@@ -1,7 +1,7 @@
 import { validate } from "./validation";
 import { checkVersionWithAppUpgrade } from "./api";
 import { Platform, Alert, Linking } from "react-native";
-import { PreferredAndroidMarket } from "app-upgrade-react-native-sdk";
+import { PreferredAndroidMarket } from "../index";
 
 async function versionCheck(appInfo, xApiKey, alertInfo, baseUrl) {
   const isValid = validate(appInfo, xApiKey);
