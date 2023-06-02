@@ -1,6 +1,6 @@
 {
   "name": "@pod-point/app-upgrade-react-native-sdk",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Pod Point App Upgrade react-native sdk",
   "main": "index.js",
   "scripts": {
