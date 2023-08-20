@@ -1,27 +1,39 @@
 import axios from "axios";
-import axiosRetry from 'axios-retry';
+import axiosRetry from "axios-retry";
 
 async function checkVersionWithAppUpgrade(appInfo, xApiKey) {
   try {
     const appUpgradeBaseUrl = "https://appupgrade.dev";
     const { appName, appVersion, platform, environment, appLanguage } = appInfo;
 
-    axiosRetry(axios, { retries: 3, retryDelay: axiosRetry.exponentialDelay, retryCondition: () => true });
+    const { customAttributes } = appInfo;
+
+    axiosRetry(axios, {
+      retries: 3,
+      retryDelay: axiosRetry.exponentialDelay,
+      retryCondition: () => true,
+    });
+
+    const params = {
+      app_name: appName,
+      app_version: appVersion,
+      platform: platform,
+      environment: environment,
+      app_language: appLanguage,
+    };
+
+    for (const key in customAttributes) {
+      params[key] = customAttributes[key];
+    }
 
     const response = await axios.get(
       `${appUpgradeBaseUrl}/api/v1/versions/check`,
       {
         headers: {
           "x-api-key": xApiKey,
-          "sdk": "react-native" //Telemetry purposes
+          sdk: "react-native", //Telemetry purposes
         },
-        params: {
-          app_name: appName,
-          app_version: appVersion,
-          platform: platform,
-          environment: environment,
-          app_language: appLanguage,
-        },
+        params,
         validateStatus: function (status) {
           return status >= 200 && status < 500; // default
         },

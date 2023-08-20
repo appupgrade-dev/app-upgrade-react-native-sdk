@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.16] - 2023-08-20
+
+* Add custom attributes support
+
 ## [1.0.15] - 2023-04-06
 
 * Update README docs examples
