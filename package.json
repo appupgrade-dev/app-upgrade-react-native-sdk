@@ -1,7 +1,7 @@
 {
-  "name": "@pod-point/app-upgrade-react-native-sdk",
-  "version": "1.0.4",
-  "description": "Pod Point App Upgrade react-native sdk",
+  "name": "app-upgrade-react-native-sdk",
+  "version": "1.0.16",
+  "description": "Official App Upgrade react-native sdk",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
