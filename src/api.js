@@ -1,8 +1,9 @@
 import axios from "axios";
 import axiosRetry from "axios-retry";
 
-async function checkVersionWithAppUpgrade(appInfo, xApiKey, appUpgradeBaseUrl) {
+async function checkVersionWithAppUpgrade(appInfo, xApiKey, baseUrl = '') {
   try {
+    const appUpgradeBaseUrl = baseUrl ? baseUrl : "https://appupgrade.dev/api/v1/versions/check";
     const { appName, appVersion, platform, environment, appLanguage } = appInfo;
 
     const { customAttributes } = appInfo;
@@ -26,7 +27,7 @@ async function checkVersionWithAppUpgrade(appInfo, xApiKey, appUpgradeBaseUrl) {
     }
 
     const response = await axios.get(
-      `${appUpgradeBaseUrl}`,
+      appUpgradeBaseUrl,
       {
         headers: {
           "x-api-key": xApiKey,

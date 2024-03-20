@@ -7,13 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "App Upgrade <support@appupgrade.dev> (https://appupgrade.dev)",
-  "homepage": "https://github.com/Pod-Point/app-upgrade-react-native-sdk",
+  "homepage": "https://github.com/appupgrade-dev/app-upgrade-react-native-sdk",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Pod-Point/app-upgrade-react-native-sdk.git"
+    "url": "git+https://github.com/appupgrade-dev/app-upgrade-react-native-sdk.git"
   },
   "bugs": {
-    "url": "https://github.com/Pod-Point/app-upgrade-react-native-sdk.git/issues"
+    "url": "https://github.com/appupgrade-dev/app-upgrade-react-native-sdk.git/issues"
   },
   "license": "MIT",
   "dependencies": {
