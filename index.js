@@ -7,8 +7,8 @@ const PreferredAndroidMarket = {
   OTHER: 'Other',
 }
 
-function appUpgradeVersionCheck(appInfo, xApiKey, alertInfo) {
-  versionCheck(appInfo, xApiKey, alertInfo);
+function appUpgradeVersionCheck(appInfo, xApiKey, alertInfo, baseUrl) {
+  versionCheck(appInfo, xApiKey, alertInfo, baseUrl);
 }
 
 export { appUpgradeVersionCheck, PreferredAndroidMarket };
