@@ -2,6 +2,10 @@
 
 All notable changes will be documented in this file.
 
+## [1.0.17] - 2024-05-28
+
+* Update axios version
+
 ## [1.0.16] - 2023-08-20
 
 * Add custom attributes support
