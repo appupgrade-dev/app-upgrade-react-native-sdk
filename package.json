@@ -1,10 +1,16 @@
 {
   "name": "app-upgrade-react-native-sdk",
-  "version": "1.0.17",
+  "version": "2.0.0",
   "description": "Official App Upgrade react-native sdk",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "jest --verbose"
   },
   "author": "App Upgrade <support@appupgrade.dev> (https://appupgrade.dev)",
   "homepage": "https://github.com/appupgrade-dev/app-upgrade-react-native-sdk",
@@ -17,12 +23,20 @@
   },
   "license": "MIT",
   "dependencies": {
-    "axios": "^1.6.0",
-    "axios-retry": "^3.4.0"
+    "axios": "^1.13.0",
+    "axios-retry": "^4.5.0"
   },
   "peerDependencies": {
-    "react": ">=16.9.0",
-    "react-native": ">=0.59.9"
+    "react": ">=18.0.0",
+    "react-native": ">=0.70.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    },
+    "react-native": {
+      "optional": false
+    }
   },
   "keywords": [
     "app-update",
@@ -30,7 +44,14 @@
     "force-update",
     "version",
     "app-upgrade",
-    "force-upgrade"
+    "force-upgrade",
+    "typescript"
   ],
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.0.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.7.0"
+  }
 }

@@ -3,6 +3,7 @@ logs
 app*.log
 *.log
 npm-debug.log*
+.DS_Store
 
 # Optional npm cache directory
 .npm
