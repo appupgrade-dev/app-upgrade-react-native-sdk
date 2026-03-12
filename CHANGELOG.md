@@ -2,6 +2,20 @@
 
 All notable changes will be documented in this file.
 
+## [2.0.0] - 2026-03-12
+
+### Breaking Changes
+* Rewritten in TypeScript — built declaration files (`.d.ts`) are now shipped
+* Entry point moved from `index.js` to `dist/index.js`
+* `axios` updated to `^1.13.0`
+* `axios-retry` updated from v3 to `^4.5.0`
+* Peer dependencies bumped: `react >= 18.0.0`, `react-native >= 0.72.0`
+* Public API functions now have strict TypeScript types (`AppInfo`, `AlertInfo`)
+
+### Added
+* Exported TypeScript interfaces: `AppInfo`, `AlertInfo`, `VersionCheckResponse`
+* `PreferredAndroidMarket` is now a TypeScript enum
+
 ## [1.0.17] - 2024-05-28
 
 * Update axios version

@@ -1,231 +1,250 @@
-# App Upgrade: React-Native SDK
+# App Upgrade React Native SDK
 
-React-Native/Expo SDK for [App Upgrade](https://appupgrade.dev)
+[![npm version](https://img.shields.io/npm/v/app-upgrade-react-native-sdk.svg)](https://www.npmjs.com/package/app-upgrade-react-native-sdk)
+[![license](https://img.shields.io/npm/l/app-upgrade-react-native-sdk.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue.svg)](https://www.typescriptlang.org/)
 
-App Upgrade is a service let your users know when to upgrade your apps or force them to upgrade the app.
+Official React Native / Expo SDK for [App Upgrade](https://appupgrade.dev) — a service to manage app version upgrades, force updates, and soft prompts across platforms.
 
-[![Twitter](https://img.shields.io/twitter/follow/app_upgrade?style=social)](https://twitter.com/app_upgrade)
-[![YouTube](https://img.shields.io/youtube/channel/subscribers/UC0ZVJPYHFVuMwEsro4VZKXw?style=social)](https://www.youtube.com/channel/UC0ZVJPYHFVuMwEsro4VZKXw)
+For v1.x please refer to this [README](https://github.com/appupgrade-dev/app-upgrade-react-native-sdk/tree/v1.x).
 
-Many times we need to force upgrade mobile apps on users' mobile. Having faced this issue multiple times decided to find a better way to tackle this problem. After doing some research on how people are doing this there are so many custom solutions or checking with the play store or AppStore API if there is a new version available. Although this works if we just want to nudge users that there is a new version available. It doesn't solve the problem where we want to make a decision.. whether it's a soft graceful update or we want to force update. So here is this product that will make developers' life easy. We can set custom messages.. see the versions in beautify dashboard, and many exciting features in the roadmap ahead.
+## Features
 
-This SDK communicate with App Upgrade and check the version with store version information in App Upgrade. Based on response it will:
-- If app needs force update will show a non-dismissable popup for update. On click it will launch app in app store for user to update.
-- If app needs to be updated but not a force update, it will show a dismissable popup.
-- If no action is required it won't do anything.
+- 🚀 **Force upgrade** — show a non-dismissable dialog that directs users to the app store
+- 💡 **Soft upgrade** — show a dismissable prompt with "Update Now" and "Later" options
+- 📱 **Cross-platform** — supports iOS, Android, and Expo
+- 🏪 **Multi-store** — Apple App Store, Google Play, Amazon Appstore, Huawei AppGallery, and custom URLs
+- 🔒 **TypeScript-first** — written in TypeScript with full type definitions
 
-App Upgrade is a cross platform solution to getting users to easily update your app.
-##### Stores Supported:
-Apple App Store | Google Play Store | Amazon App Store | Huawei AppGallery | Other Android Markets
---- | --- | --- | --- | ---
-**✓** | **✓** | **✓** | **✓** |  **✓** If your app market place isn't one of these you can pass your own store URL.
+## Supported Stores
+
+| Apple App Store | Google Play Store | Amazon Appstore | Huawei AppGallery | Custom URL |
+|:---:|:---:|:---:|:---:|:---:|
+| ✅ | ✅ | ✅ | ✅ | ✅ |
 
 ## Installation
-Install via npm
+
+```bash
+npm install app-upgrade-react-native-sdk
 ```
-npm i app-upgrade-react-native-sdk --save
+
+```bash
+# or with yarn
+yarn add app-upgrade-react-native-sdk
 ```
 
-Or if using Expo than you can use `expo install app-upgrade-react-native-sdk` as well.
-
-## How to use it.
-1. Register on App Upgrade and follow the instructions to create project and get the x-api-key.
-
-2. Import the SDK and use it.
-### React Native Example
+```bash
+# or with Expo
+npx expo install app-upgrade-react-native-sdk
 ```
-import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
 
-.....
+### Requirements
 
-const App: () => Node = () => {
+| Dependency | Minimum Version |
+|------------|----------------|
+| `react` | `>= 18.0.0` |
+| `react-native` | `>= 0.72.0` |
 
-  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
-  const appInfo = {
-    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
-    appName: 'Wallpaper app', // Your app name
-    appVersion: '1.0.0', // Your app version
-    platform: 'android', // App Platform, android or ios
-    environment: 'production', // App Environment, production, development
-    appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-  };
+## Quick Start
 
-  // Alert config is optional
-  const alertConfig = {
-    title: 'Please Update',
+### 1. Get your API key
+
+Register on [App Upgrade](https://appupgrade.dev), create a project, and copy your `x-api-key`.
+
+### 2. Add the version check
+
+```typescript
+import { appUpgradeVersionCheck, AppUpgradeClient } from 'app-upgrade-react-native-sdk';
+import type { AppInfo, AlertInfo } from 'app-upgrade-react-native-sdk';
+import { Platform } from 'react-native';
+import { useEffect, useMemo } from 'react';
+
+const App = () => {
+const client = useMemo(() => new AppUpgradeClient({
+  apiKey: 'YOUR_API_KEY',
+  debug: false, // Optional: enable console logs. Default: false
+}), []);
+
+  const appInfo: AppInfo = useMemo(() => ({
+    appId: Platform.OS === 'ios' ? '1234567890' : 'com.example.myapp',
+    // iOS: numeric App Store ID (not bundle ID)
+    // Android: applicationId / package name
+    appName: 'My App',
+    appVersion: '1.0.0',
+    platform: Platform.OS,            // 'android' | 'ios'
+    environment: 'production',        // 'production' | 'development'
+    appLanguage: 'en',                // Optional — for localized messages
+  }), []);
+
+  const alertConfig: AlertInfo = {    // Optional
+    title: 'Update Available',
     updateButtonTitle: 'Update Now',
     laterButtonTitle: 'Later',
-    onDismissCallback: () => { console.log('Dismiss') },
-    onLaterCallback: () => { console.log('Later') }
-    onUpdateCallback: () => { console.log('Update') }
+    onDismissCallback: () => console.log('Dismissed'),
+    onLaterCallback: () => console.log('Later'),
+    onUpdateCallback: () => console.log('Updating'),
   };
 
-  appUpgradeVersionCheck(appInfo, xApiKey, alertConfig);
+  useEffect(() => {
+    appUpgradeVersionCheck(client, appInfo, alertConfig);
+  }, [client, appInfo]);
 
   return (
-      <SafeAreaView style={backgroundStyle}>
-        ...
-      </SafeAreaView>
+    // your app JSX
   );
 };
-
 ```
 
-### Expo Example:
+> **Tip:** Call the version check from `useEffect` (or when the app becomes active) so it runs once per session instead of every render.
+
+## API Reference
+
+### `AppUpgradeClient`
+
+Initialize the client with your credentials before calling version check.
+
+```typescript
+const client = new AppUpgradeClient({
+  apiKey: string;      // Your App Upgrade project key
+  baseURL?: string;    // Override default API URL
+  debug?: boolean;     // Enable SDK debug logs (default: false)
+});
 ```
-import {appUpgradeVersionCheck} from 'app-upgrade-react-native-sdk';
 
-.....
+### `appUpgradeVersionCheck(client, appInfo, alertConfig?)`
 
-export default function App() {
-  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
-  const appInfo = {
-    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
-    appName: 'Wallpaper app', // Your app name
-    appVersion: '1.0.0', // Your app version
-    platform: 'android', // App Platform, android or ios
-    environment: 'production', // App Environment, production, development
-    appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-  };
+Checks the app version with App Upgrade and shows an upgrade dialog when needed.
 
-  // Alert config is optional
-  const alertConfig = {
-    title: 'Please Update',
-    updateButtonTitle: 'Update Now',
-    laterButtonTitle: 'Later',
-    onDismissCallback: () => { console.log('Dismiss') },
-    onLaterCallback: () => { console.log('Later') }
-    onUpdateCallback: () => { console.log('Update') }
-  };
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| `client` | `AppUpgradeClient` | ✅ | The initialized API client |
+| `appInfo` | `AppInfo` | ✅ | App metadata for the version check |
+| `alertConfig` | `AlertInfo` | — | Customize the alert dialog |
 
-  appUpgradeVersionCheck(appInfo, xApiKey, alertConfig);
+### `AppInfo`
 
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+```typescript
+interface AppInfo {
+  appId: string;                                    // Store ID or package name
+  appName: string;                                  // Display name
+  appVersion: string;                               // Current version (e.g. "1.0.0")
+  platform: string;                                 // "android" | "ios"
+  environment: string;                              // "production" | "development"
+  appLanguage?: string;                             // Locale code (e.g. "en", "es")
+  preferredAndroidMarket?: PreferredAndroidMarket;  // Default: Google Play
+  otherAndroidMarketUrl?: string;                   // Required when market is OTHER
+  customAttributes?: Record<string, string>;        // Custom key-value pairs
 }
-
 ```
-### Note:
-1. For opening the app store or play store the app should be live.
-2. It might not be able to open the app store or play store in simulator. You can try it in physical device.
-3. If you are using the same code base for both android and ios than you can detect the platform and provide the appId.
-4. You can find a sample app from here [app-upgrade-react-native-demo-app](https://github.com/appupgrade-dev/app_upgrade_react_native_demo_app)
-5. Read detailed blog on how to integrate from here [How to upgrade/force upgrade React Native app](https://appupgrade.dev/blog/how-to-force-upgrade-react-native-app)
 
-### Example with store other than app store or play store.
-If you want users to redirect to store other than app store or playstore. You can add these additional parameters **preferredAndroidMarket** see the example below.
+### `AlertInfo`
+
+```typescript
+interface AlertInfo {
+  title?: string;              // Dialog title (default: "Please update")
+  updateButtonTitle?: string;  // Update button text (default: "Update Now")
+  laterButtonTitle?: string;   // Later button text (default: "Later")
+  onDismissCallback?: () => void;  // Non-force only
+  onLaterCallback?: () => void;    // Non-force only
+  onUpdateCallback?: () => void;   // Force + non-force
+}
 ```
-import {appUpgradeVersionCheck, PreferredAndroidMarket } from 'app-upgrade-react-native-sdk';
 
-.....
+### `PreferredAndroidMarket`
 
-const App: () => Node = () => {
+```typescript
+enum PreferredAndroidMarket {
+  GOOGLE  = 'Google',   // Google Play Store (default)
+  HUAWEI  = 'Huawei',   // Huawei AppGallery
+  AMAZON  = 'Amazon',   // Amazon Appstore
+  OTHER   = 'Other',    // Custom URL (requires otherAndroidMarketUrl)
+}
+```
 
-  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
-  const appInfo = {
-    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
-    appName: 'Wallpaper app', // Your app name
-    appVersion: '1.0.0', // Your app version
-    platform: 'android', // App Platform, android or ios
-    environment: 'production', // App Environment, production, development
-    appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-    preferredAndroidMarket: PreferredAndroidMarket.AMAZON // or PreferredAndroidMarket.HUAWEI or PreferredAndroidMarket.OTHER If not provided default is Google playstore. Optional
-  };
+## Advanced Usage
 
-  appUpgradeVersionCheck(appInfo, xApiKey);
+### Alternative Android Stores
 
-  return (
-      <SafeAreaView style={backgroundStyle}>
-        ...
-      </SafeAreaView>
-  );
+```typescript
+import { appUpgradeVersionCheck, PreferredAndroidMarket, AppUpgradeClient } from 'app-upgrade-react-native-sdk';
+import type { AppInfo } from 'app-upgrade-react-native-sdk';
+
+const client = new AppUpgradeClient({ apiKey: 'YOUR_API_KEY' });
+
+const appInfo: AppInfo = {
+  appId: 'com.example.myapp',
+  appName: 'My App',
+  appVersion: '1.0.0',
+  platform: 'android',
+  environment: 'production',
+  preferredAndroidMarket: PreferredAndroidMarket.AMAZON,
 };
 
+appUpgradeVersionCheck(client, appInfo);
 ```
 
-- preferredAndroidMarket: PreferredAndroidMarket.AMAZON // or PreferredAndroidMarket.HUAWEI or PreferredAndroidMarket.OTHER If not provided default is Google playstore. If SDK fails to open preferred market place in case marketplace is not available then default Google playstore will be open.
+### Custom Store URL
 
-If you want to redirect user to some other android market place you can add the following fields:
-```
-preferredAndroidMarket: PreferredAndroidMarket.OTHER
-otherAndroidMarketUrl: 'https://someotherandroidmarket.com/app/id'// Required if preferredAndroidMarket is Other.
-```
-
-```
-import {appUpgradeVersionCheck, PreferredAndroidMarket } from 'app-upgrade-react-native-sdk';
-
-.....
-
-const App: () => Node = () => {
-
-  const xApiKey = "MDNmNmZkNDEtNmNkMi00NzY3LThjOWEtYWYxMGFjZWQ0ZjI2"; // Your project key
-  const appInfo = {
-    appId: 'com.android.com' or '1549468967', // Your app id in play store or app store
-    appName: 'Wallpaper app', // Your app name
-    appVersion: '1.0.0', // Your app version
-    platform: 'android', // App Platform, android or ios
-    environment: 'production', // App Environment, production, development
-    appLanguage: 'es' //Your app language ex: en, es etc. Optional.
-    preferredAndroidMarket: PreferredAndroidMarket.OTHER
-    otherAndroidMarketUrl: 'https://someotherandroidmarket.com/app/id'// Required if preferredAndroidMarket is Other.
-  };
-
-  appUpgradeVersionCheck(appInfo, xApiKey);
-
-  return (
-      <SafeAreaView style={backgroundStyle}>
-        ...
-      </SafeAreaView>
-  );
+```typescript
+const appInfo: AppInfo = {
+  appId: 'com.example.myapp',
+  appName: 'My App',
+  appVersion: '1.0.0',
+  platform: 'android',
+  environment: 'production',
+  preferredAndroidMarket: PreferredAndroidMarket.OTHER,
+  otherAndroidMarketUrl: 'https://my-custom-store.com/app/myapp',
 };
-
 ```
 
-## Example Screenshot
+> If the preferred marketplace fails to open, the SDK automatically falls back to the Google Play Store.
+
+## Usage Notes
+
+- `platform` and `appId` should match the current device platform. The SDK uses `platform` to talk to App Upgrade and `Platform.OS` to open the store.
+- The iOS `appId` must be the numeric App Store ID. The Android `appId` must be the package name.
+- `appUpgradeVersionCheck` is fire-and-forget. It triggers UI alerts and store redirects without returning a result to your app.
+- For force upgrades, the SDK re-checks on app resume and will show the dialog again if the upgrade is still required.
+
+## Callbacks
+
+| Callback | Trigger | Use Case |
+|----------|---------|----------|
+| `onDismissCallback` | User taps outside the dialog (non-force only) | Analytics, custom logging |
+| `onLaterCallback` | User taps "Later" (non-force only) | Schedule a reminder |
+| `onUpdateCallback` | User taps "Update Now" | Analytics, cleanup tasks |
+
+## Screenshots
+
 ### Android
-For force upgrade only Update button is enable and user cannot skip it.
-For recommended upgrade Update and Later button is enable. User can skip it.
 
-![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-assets/main/images/forceupgrade_android.png)
+**Force upgrade** — only the Update button is shown; the user cannot skip.
+**Recommended upgrade** — both Update and Later buttons are shown.
+
+![Android force upgrade](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-assets/main/images/forceupgrade_android.png)
 
 ### iOS
 
-![image](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-assets/main/images/forceupgrade_ios.jpg)
+![iOS force upgrade](https://raw.githubusercontent.com/appupgrade-dev/app-upgrade-assets/main/images/forceupgrade_ios.jpg)
 
+## Important Notes
 
-### Callbacks Documentations
-SDK provides you two callbacks.
-1. onDismissCallback
-    onDismissCallback callback is called when the dismisses the popup, by clicking elsewhere on the screen. In the non-force upgrade, SDK will show a popup with the Later button and the Update Now button. If the user just clicks outside elsewhere the popup it will dismiss and SDK will call onDismissCallback.
+1. The app must be **published** in the store for the redirect to work.
+2. Store redirects may not work in **simulators** — test on a physical device.
+3. Find a sample app here: [app-upgrade-react-native-demo-app](https://github.com/appupgrade-dev/app_upgrade_react_native_demo_app)
+4. Read the integration guide: [How to force upgrade a React Native app](https://appupgrade.dev/blog/how-to-force-upgrade-react-native-app)
 
-2. onLaterCallback
-    If the user clicks on the Later button the SDK will call the onLaterCallback. You can use these for tracking purposes or for something else. onLaterCallback can be used to set a timer and remind the user later that can be done from the app.
+## Resources
 
-3. onUpdateCallback
-    If the user clicks on the Update button the SDK will call the onUpdateCallback. You can use these for tracking purposes or for something else.
+- 📖 [Documentation](https://appupgrade.dev/docs/)
+- ❓ [FAQ](https://appupgrade.dev/docs/app-upgrade-faq)
+- 📝 [Changelog](CHANGELOG.md)
+- 📧 Support: [support@appupgrade.dev](mailto:support@appupgrade.dev)
 
-## App Upgrade Docs
-For more information visit [App Upgrade](https://appupgrade.dev)
-
-### Changelog
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-### Contributing
+## Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) and [CODE OF CONDUCT](CODE_OF_CONDUCT.md) for details.
 
-### License
+## License
 
-The MIT License (MIT). Please see [License File](LICENSE) for more information.
-
-## Need help?
-
-If you're looking for help, try our [Documentation](https://appupgrade.dev/docs/) or our [FAQ](https://appupgrade.dev/docs/app-upgrade-faq).
-If you need support please write to us at support@appupgrade.dev
-
-### Happy Coding!!!
+[MIT](LICENSE) © [App Upgrade](https://appupgrade.dev)
